@@ -39,6 +39,21 @@ Email Header forensics/
 ├── QUICK_START.md              # Quick reference guide
 └── requirements.txt             # Python dependencies
 ```
+Screenshots
+
+<img width="1920" height="1080" alt="Screenshot 2025-12-12 194211" src="https://github.com/user-attachments/assets/0f89d2a0-ef98-4010-b19e-e70ae5b3f251" />
+
+<img width="1920" height="1080" alt="Screenshot 2025-12-12 194023" src="https://github.com/user-attachments/assets/632a7b8c-3dea-4265-b504-3470395c5c8f" />
+
+<img width="1920" height="1080" alt="Screenshot 2025-12-12 194006" src="https://github.com/user-attachments/assets/109096e9-0441-411d-bf05-c941a57fd620" />
+
+<img width="1245" height="915" alt="Screenshot 2025-12-12 185951" src="https://github.com/user-attachments/assets/e39b6b7a-dc1f-4f5b-9422-54da93caea49" />
+
+<img width="1920" height="1080" alt="Screenshot 2025-12-12 193936" src="https://github.com/user-attachments/assets/030ac82f-e12e-49ae-89ba-6d90d274bab9" />
+
+<img width="1920" height="1080" alt="Screenshot 2025-12-12 194235" src="https://github.com/user-attachments/assets/3bac7874-e147-4f60-bcad-b75cc9b658aa" />
+
+
 
 ## Installation
 
@@ -275,4 +290,5 @@ This project demonstrates SOC L1 email header forensics analysis skills, includi
 - SOC operations workflow
 
 The GUI footer displays: "Designed by Himanshu Kumar"
+
 
