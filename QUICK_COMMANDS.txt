@@ -1,0 +1,58 @@
+================================================================================
+QUICK COMMANDS FOR EMAIL HEADER ANALYSIS
+================================================================================
+
+ANALYZE phish_email_4.txt (Bank Security Phishing):
+----------------------------------------------------
+python email_header_analyzer.py samples/phish_email_4.txt
+
+OR use the batch file:
+analyze_email4.bat
+
+OR use PowerShell:
+.\analyze_email4.ps1
+
+
+INTERACTIVE MODE (Recommended):
+--------------------------------
+python main.py
+
+
+ANALYZE ALL SAMPLES:
+--------------------
+python generate_soc_report.py
+(Then choose option 2)
+
+
+QUICK TEST ALL SAMPLES:
+-----------------------
+python test_all_samples.py
+
+
+ANALYZE OTHER SAMPLES:
+----------------------
+python email_header_analyzer.py samples/phish_email_1.txt  (PayPal)
+python email_header_analyzer.py samples/phish_email_2.txt  (Microsoft)
+python email_header_analyzer.py samples/phish_email_3.txt  (Amazon)
+python email_header_analyzer.py samples/phish_email_5.txt  (Apple)
+
+
+GENERATE FULL SOC REPORT:
+--------------------------
+python generate_soc_report.py
+(Then choose option 2 for all samples, or option 1 for single email)
+
+
+================================================================================
+WHAT phish_email_4.txt SHOWS:
+================================================================================
+- SPF: PASS (but this can be spoofed!)
+- DKIM: FAIL ⚠️ (Signature verification failed)
+- DMARC: FAIL ⚠️ (Policy violation)
+- Risk Level: HIGH (6/11)
+
+This is a sophisticated phishing attempt where SPF passes but DKIM/DMARC fail,
+indicating the email was likely tampered with or the signature is invalid.
+
+================================================================================
+

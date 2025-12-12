@@ -1,0 +1,365 @@
+====================================================================================================
+SOC LEVEL 1 - EMAIL HEADER FORENSICS ANALYSIS REPORT
+How SOC L1 Analyzes Email Headers
+====================================================================================================
+
+Report Generated: 2025-12-12 19:40:42
+Total Samples Analyzed: 5
+
+====================================================================================================
+
+EXECUTIVE SUMMARY
+----------------------------------------------------------------------------------------------------
+
+This report demonstrates how SOC Level 1 analysts investigate phishing emails
+by analyzing email headers. The analysis focuses on four critical security
+indicators:
+
+1. SPF (Sender Policy Framework) - Verifies sender IP authorization
+2. DKIM (DomainKeys Identified Mail) - Validates email authenticity
+3. DMARC (Domain-based Message Authentication) - Overall policy compliance
+4. Mail Hops - Tracks email routing path
+
+====================================================================================================
+SAMPLE 1: phish_email_1.txt
+====================================================================================================
+
+[1] BASIC EMAIL INFORMATION
+----------------------------------------------------------------------------------------------------
+From: PayPal Security <noreply@paypal-security.com>
+To: user@example.com
+Subject: URGENT: Your PayPal Account Has Been Suspended
+Return-Path: <noreply@paypal-security.com>
+Message-ID: <20240115142230.7B8C9D0E1F@mail.paypal-security.com>
+
+[2] SPF (Sender Policy Framework) ANALYSIS
+----------------------------------------------------------------------------------------------------
+SPF Result: FAIL
+  ⚠️  ALERT: SPF FAIL - Email failed SPF verification!
+     This indicates the sending IP is not authorized by the domain.
+     HIGH INDICATOR OF PHISHING ATTEMPT.
+SMTP MailFrom: paypal-security.com
+
+[3] DKIM (DomainKeys Identified Mail) ANALYSIS
+----------------------------------------------------------------------------------------------------
+DKIM Result: NONE
+  ⚠️  ALERT: No DKIM signature found!
+     Legitimate emails from major services typically have DKIM signatures.
+     HIGH INDICATOR OF PHISHING ATTEMPT.
+
+[4] DMARC (Domain-based Message Authentication) ANALYSIS
+----------------------------------------------------------------------------------------------------
+DMARC Result: FAIL
+  ⚠️  ALERT: DMARC FAIL - Email failed DMARC policy check!
+     This is a STRONG INDICATOR OF PHISHING ATTEMPT.
+     Email should be quarantined or rejected per policy.
+
+[5] MAIL HOPS ANALYSIS
+----------------------------------------------------------------------------------------------------
+Total Hops: 1
+
+Email Routing Path (from recipient to sender):
+
+  Hop 1:
+    From: 192.168.45.123
+    By: mail.paypal-security.com
+    IP Address: 192.168.45.123
+    With: SMTP
+    Timestamp: Mon, 15 Jan 2024 14:22:30
+
+  HOP ANALYSIS:
+  ⚠️  ALERT: Suspicious IP addresses detected: 192.168.45.123
+     Private IPs in mail headers may indicate internal relay abuse.
+
+[6] RISK ASSESSMENT
+----------------------------------------------------------------------------------------------------
+Risk Score: 10/11
+Risk Level: CRITICAL - HIGH PROBABILITY OF PHISHING
+Risk Factors: SPF Fail, No DKIM, DMARC Fail, Suspicious IPs
+
+[7] SOC L1 RECOMMENDED ACTIONS
+----------------------------------------------------------------------------------------------------
+  ✓ Quarantine email immediately
+  ✓ Block sender domain/IP
+  ✓ Escalate to SOC L2 for further investigation
+  ✓ Check for similar emails in organization
+  ✓ Update threat intelligence feeds
+
+====================================================================================================
+SAMPLE 2: phish_email_2.txt
+====================================================================================================
+
+[1] BASIC EMAIL INFORMATION
+----------------------------------------------------------------------------------------------------
+From: Microsoft Account Team <support@microsoft-account.com>
+To: employee@company.com
+Subject: Action Required: Verify Your Microsoft Account
+Return-Path: <support@microsoft-account.com>
+Message-ID: <20240116091410.2A3B4C5D6E@smtp.relay-server.net>
+
+[2] SPF (Sender Policy Framework) ANALYSIS
+----------------------------------------------------------------------------------------------------
+SPF Result: SOFTFAIL
+  ⚠️  WARNING: SPF SOFTFAIL - Domain does not clearly authorize sender.
+     Suspicious but not definitive. Requires further investigation.
+SMTP MailFrom: microsoft-account.com
+
+[3] DKIM (DomainKeys Identified Mail) ANALYSIS
+----------------------------------------------------------------------------------------------------
+DKIM Result: PASS
+  ✓ DKIM PASS - Signature verified successfully.
+     Email appears authentic from DKIM perspective.
+DKIM Domain: microsoft-account.com
+DKIM Selector: selector1
+
+[4] DMARC (Domain-based Message Authentication) ANALYSIS
+----------------------------------------------------------------------------------------------------
+DMARC Result: PASS
+  ✓ DMARC PASS - Email passed DMARC policy check.
+     Email appears compliant with domain's authentication policy.
+
+[5] MAIL HOPS ANALYSIS
+----------------------------------------------------------------------------------------------------
+Total Hops: 1
+
+Email Routing Path (from recipient to sender):
+
+  Hop 1:
+    From: 198.51.100.78
+    By: smtp.relay-server.net
+    IP Address: 198.51.100.78
+    With: ESMTPS
+    Timestamp: Tue, 16 Jan 2024 09:14:10
+
+  HOP ANALYSIS:
+
+[6] RISK ASSESSMENT
+----------------------------------------------------------------------------------------------------
+Risk Score: 1/11
+Risk Level: LOW - BUT VERIFY SENDER
+Risk Factors: SPF softfail
+
+[7] SOC L1 RECOMMENDED ACTIONS
+----------------------------------------------------------------------------------------------------
+  ✓ Review email content
+  ✓ Verify sender legitimacy through other means
+  ✓ Monitor for similar patterns
+
+====================================================================================================
+SAMPLE 3: phish_email_3.txt
+====================================================================================================
+
+[1] BASIC EMAIL INFORMATION
+----------------------------------------------------------------------------------------------------
+From: Amazon Prime <no-reply@amazon-prime.com>
+To: customer@organization.org
+Subject: Your Prime Membership Expires Today - Renew Now!
+Return-Path: <no-reply@amazon-prime.com>
+Message-ID: <20240117164420.4E5F6A7B8C@mx1.fake-mail-server.com>
+
+[2] SPF (Sender Policy Framework) ANALYSIS
+----------------------------------------------------------------------------------------------------
+SPF Result: NONE
+  ⚠️  WARNING: No SPF record found for this domain.
+     Legitimate domains typically have SPF records configured.
+SMTP MailFrom: amazon-prime.com
+
+[3] DKIM (DomainKeys Identified Mail) ANALYSIS
+----------------------------------------------------------------------------------------------------
+DKIM Result: NONE
+  ⚠️  ALERT: No DKIM signature found!
+     Legitimate emails from major services typically have DKIM signatures.
+     HIGH INDICATOR OF PHISHING ATTEMPT.
+
+[4] DMARC (Domain-based Message Authentication) ANALYSIS
+----------------------------------------------------------------------------------------------------
+DMARC Result: NONE
+  ⚠️  WARNING: No DMARC policy found for this domain.
+     Legitimate domains often have DMARC policies configured.
+
+[5] MAIL HOPS ANALYSIS
+----------------------------------------------------------------------------------------------------
+Total Hops: 1
+
+Email Routing Path (from recipient to sender):
+
+  Hop 1:
+    From: 10.0.0.1
+    By: mx1.fake-mail-server.com
+    IP Address: 10.0.0.1
+    With: SMTP
+    Timestamp: Wed, 17 Jan 2024 16:44:20
+
+  HOP ANALYSIS:
+  ⚠️  ALERT: Suspicious IP addresses detected: 10.0.0.1
+     Private IPs in mail headers may indicate internal relay abuse.
+
+[6] RISK ASSESSMENT
+----------------------------------------------------------------------------------------------------
+Risk Score: 6/11
+Risk Level: HIGH - SUSPICIOUS, LIKELY PHISHING
+Risk Factors: SPF none, No DKIM, No DMARC, Suspicious IPs
+
+[7] SOC L1 RECOMMENDED ACTIONS
+----------------------------------------------------------------------------------------------------
+  ✓ Flag email as suspicious
+  ✓ Review email content for phishing indicators
+  ✓ Check sender reputation
+  ✓ Consider blocking if pattern matches known threats
+
+====================================================================================================
+SAMPLE 4: phish_email_4.txt
+====================================================================================================
+
+[1] BASIC EMAIL INFORMATION
+----------------------------------------------------------------------------------------------------
+From: Bank Security Alert <alerts@bank-security.com>
+To: client@financial.com
+Subject: Suspicious Activity Detected on Your Account
+Return-Path: <alerts@bank-security.com>
+Message-ID: <20240118112905.6A7B8C9D0E@mail.gateway.net>
+
+[2] SPF (Sender Policy Framework) ANALYSIS
+----------------------------------------------------------------------------------------------------
+SPF Result: PASS
+  ✓ SPF PASS - Sender IP is authorized by domain.
+     However, SPF pass alone does not guarantee legitimacy.
+SMTP MailFrom: bank-security.com
+
+[3] DKIM (DomainKeys Identified Mail) ANALYSIS
+----------------------------------------------------------------------------------------------------
+DKIM Result: FAIL
+  ⚠️  ALERT: DKIM FAIL - Signature verification failed!
+     Email may have been tampered with or signature is invalid.
+     HIGH INDICATOR OF PHISHING ATTEMPT.
+DKIM Domain: bank-security.com
+DKIM Selector: default
+
+[4] DMARC (Domain-based Message Authentication) ANALYSIS
+----------------------------------------------------------------------------------------------------
+DMARC Result: FAIL
+  ⚠️  ALERT: DMARC FAIL - Email failed DMARC policy check!
+     This is a STRONG INDICATOR OF PHISHING ATTEMPT.
+     Email should be quarantined or rejected per policy.
+
+[5] MAIL HOPS ANALYSIS
+----------------------------------------------------------------------------------------------------
+Total Hops: 1
+
+Email Routing Path (from recipient to sender):
+
+  Hop 1:
+    From: 203.0.113.200
+    By: mail.gateway.net
+    IP Address: 203.0.113.200
+    With: ESMTPS
+    Timestamp: Thu, 18 Jan 2024 11:29:05
+
+  HOP ANALYSIS:
+
+[6] RISK ASSESSMENT
+----------------------------------------------------------------------------------------------------
+Risk Score: 6/11
+Risk Level: HIGH - SUSPICIOUS, LIKELY PHISHING
+Risk Factors: DKIM Fail, DMARC Fail
+
+[7] SOC L1 RECOMMENDED ACTIONS
+----------------------------------------------------------------------------------------------------
+  ✓ Flag email as suspicious
+  ✓ Review email content for phishing indicators
+  ✓ Check sender reputation
+  ✓ Consider blocking if pattern matches known threats
+
+====================================================================================================
+SAMPLE 5: phish_email_5.txt
+====================================================================================================
+
+[1] BASIC EMAIL INFORMATION
+----------------------------------------------------------------------------------------------------
+From: Apple ID <noreply@apple-id.com>
+To: user@enterprise.com
+Subject: Your Apple ID Has Been Locked - Unlock Now
+Return-Path: <noreply@apple-id.com>
+Message-ID: <20240119131815.9D0E1F2A3B@smtp.proxy-service.com>
+
+[2] SPF (Sender Policy Framework) ANALYSIS
+----------------------------------------------------------------------------------------------------
+SPF Result: TEMPERROR
+  ⚠️  WARNING: SPF TEMPERROR - Temporary error during SPF check.
+     Could indicate DNS issues or evasion attempt.
+SMTP MailFrom: apple-id.com
+
+[3] DKIM (DomainKeys Identified Mail) ANALYSIS
+----------------------------------------------------------------------------------------------------
+DKIM Result: NONE
+  ⚠️  ALERT: No DKIM signature found!
+     Legitimate emails from major services typically have DKIM signatures.
+     HIGH INDICATOR OF PHISHING ATTEMPT.
+
+[4] DMARC (Domain-based Message Authentication) ANALYSIS
+----------------------------------------------------------------------------------------------------
+DMARC Result: NONE
+  ⚠️  WARNING: No DMARC policy found for this domain.
+     Legitimate domains often have DMARC policies configured.
+
+[5] MAIL HOPS ANALYSIS
+----------------------------------------------------------------------------------------------------
+Total Hops: 1
+
+Email Routing Path (from recipient to sender):
+
+  Hop 1:
+    From: 192.0.2.250
+    By: smtp.proxy-service.com
+    IP Address: 192.0.2.250
+    With: SMTP
+    Timestamp: Fri, 19 Jan 2024 13:18:15
+
+  HOP ANALYSIS:
+
+[6] RISK ASSESSMENT
+----------------------------------------------------------------------------------------------------
+Risk Score: 4/11
+Risk Level: HIGH - SUSPICIOUS, LIKELY PHISHING
+Risk Factors: SPF temperror, No DKIM, No DMARC
+
+[7] SOC L1 RECOMMENDED ACTIONS
+----------------------------------------------------------------------------------------------------
+  ✓ Flag email as suspicious
+  ✓ Review email content for phishing indicators
+  ✓ Check sender reputation
+  ✓ Consider blocking if pattern matches known threats
+
+====================================================================================================
+SOC L1 ANALYSIS METHODOLOGY SUMMARY
+====================================================================================================
+
+KEY INDICATORS OF PHISHING:
+1. SPF Fail/Softfail/None - Sender not authorized
+2. DKIM None/Fail - Missing or invalid signature
+3. DMARC Fail - Policy violation
+4. Multiple suspicious hops - Unusual routing
+5. Mismatch between From domain and Return-Path
+6. Suspicious IP addresses in routing
+
+ANALYSIS WORKFLOW:
+Step 1: Extract basic email information (From, To, Subject)
+Step 2: Check SPF record - Is sender IP authorized?
+Step 3: Verify DKIM signature - Is email authentic?
+Step 4: Check DMARC policy - Does email comply?
+Step 5: Analyze mail hops - Trace email path
+Step 6: Calculate risk score based on findings
+Step 7: Take appropriate action (quarantine/block/escalate)
+
+BEST PRACTICES:
+- Always check all three: SPF, DKIM, and DMARC
+- A single pass doesn't guarantee legitimacy
+- Multiple failures strongly indicate phishing
+- Compare Return-Path with From header
+- Investigate unusual routing patterns
+- Use threat intelligence feeds for IP/domain reputation
+- Document findings for future reference
+
+====================================================================================================
+END OF REPORT
+====================================================================================================

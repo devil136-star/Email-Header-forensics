@@ -1,0 +1,12 @@
+# Email Header Forensics Project
+# No external dependencies required - uses Python standard library only
+
+# Python 3.6+ required
+# Standard library modules used:
+# - re (regular expressions)
+# - json
+# - os
+# - datetime
+# - typing
+# - sys
+

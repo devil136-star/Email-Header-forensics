@@ -1,0 +1,202 @@
+[
+  {
+    "spf": {
+      "received_spf": "fail (mail.paypal-security.com: domain of paypal-security.com does not designate 203.0.113.45 as permitted sender) client-ip=203.0.113.45;",
+      "authentication_results_spf": "mail.example.com; spf=fail smtp.mailfrom=paypal-security.com; dkim=none header.d=paypal-security.com; dmarc=fail (p=quarantine sp=quarantine pct=100) action=quarantine header.from=paypal-security.com",
+      "spf_result": "fail",
+      "spf_smtp_mailfrom": "paypal-security.com"
+    },
+    "dkim": {
+      "dkim_signature": null,
+      "authentication_results_dkim": "mail.example.com; spf=fail smtp.mailfrom=paypal-security.com; dkim=none header.d=paypal-security.com; dmarc=fail (p=quarantine sp=quarantine pct=100) action=quarantine header.from=paypal-security.com",
+      "dkim_result": "none",
+      "dkim_domain": null,
+      "dkim_selector": null
+    },
+    "dmarc": {
+      "authentication_results_dmarc": "mail.example.com; spf=fail smtp.mailfrom=paypal-security.com; dkim=none header.d=paypal-security.com; dmarc=fail (p=quarantine sp=quarantine pct=100) action=quarantine header.from=paypal-security.com",
+      "dmarc_result": "fail",
+      "dmarc_policy": null,
+      "dmarc_domain": "p=quarantine"
+    },
+    "mail_hops": [
+      {
+        "from": "192.168.45.123",
+        "by": "mail.paypal-security.com",
+        "with": "SMTP",
+        "id": "7B8C9D0E1F",
+        "timestamp": "Mon, 15 Jan 2024 14:22:30",
+        "ip_address": "192.168.45.123"
+      }
+    ],
+    "basic_info": {
+      "from": "PayPal Security <noreply@paypal-security.com>",
+      "to": "user@example.com",
+      "subject": "URGENT: Your PayPal Account Has Been Suspended",
+      "date": "Mon, 15 Jan 2024 14:22:30 +0000",
+      "message_id": "<20240115142230.7B8C9D0E1F@mail.paypal-security.com>",
+      "return_path": "<noreply@paypal-security.com>"
+    },
+    "sample_file": "phish_email_1.txt"
+  },
+  {
+    "spf": {
+      "received_spf": "softfail (smtp.relay-server.net: transitioning domain of microsoft-account.com does not clearly designate 172.16.0.50 as permitted sender) client-ip=172.16.0.50;",
+      "authentication_results_spf": "mail.company.com; spf=softfail smtp.mailfrom=microsoft-account.com; dkim=pass (signature verified) header.d=microsoft-account.com header.i=@microsoft-account.com; dmarc=pass (p=none sp=none pct=100) action=none header.from=microsoft-account.com",
+      "spf_result": "softfail",
+      "spf_smtp_mailfrom": "microsoft-account.com"
+    },
+    "dkim": {
+      "dkim_signature": "v=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft-account.com; s=selector1; h=from:to:subject:date; bh=abc123def456ghi789jkl012mno345pqr678stu901vwx234yz; b=xyz789abc123def456ghi789jkl012mno345pqr678stu901vwx234yz",
+      "authentication_results_dkim": "mail.company.com; spf=softfail smtp.mailfrom=microsoft-account.com; dkim=pass (signature verified) header.d=microsoft-account.com header.i=@microsoft-account.com; dmarc=pass (p=none sp=none pct=100) action=none header.from=microsoft-account.com",
+      "dkim_result": "pass",
+      "dkim_domain": "microsoft-account.com",
+      "dkim_selector": "selector1"
+    },
+    "dmarc": {
+      "authentication_results_dmarc": "mail.company.com; spf=softfail smtp.mailfrom=microsoft-account.com; dkim=pass (signature verified) header.d=microsoft-account.com header.i=@microsoft-account.com; dmarc=pass (p=none sp=none pct=100) action=none header.from=microsoft-account.com",
+      "dmarc_result": "pass",
+      "dmarc_policy": null,
+      "dmarc_domain": "p=none"
+    },
+    "mail_hops": [
+      {
+        "from": "198.51.100.78",
+        "by": "smtp.relay-server.net",
+        "with": "ESMTPS",
+        "id": "2A3B4C5D6E",
+        "timestamp": "Tue, 16 Jan 2024 09:14:10",
+        "ip_address": "198.51.100.78"
+      }
+    ],
+    "basic_info": {
+      "from": "Microsoft Account Team <support@microsoft-account.com>",
+      "to": "employee@company.com",
+      "subject": "Action Required: Verify Your Microsoft Account",
+      "date": "Tue, 16 Jan 2024 09:14:10 +0000",
+      "message_id": "<20240116091410.2A3B4C5D6E@smtp.relay-server.net>",
+      "return_path": "<support@microsoft-account.com>"
+    },
+    "sample_file": "phish_email_2.txt"
+  },
+  {
+    "spf": {
+      "received_spf": "none (mx1.fake-mail-server.com: no SPF record found for amazon-prime.com) client-ip=192.0.2.100;",
+      "authentication_results_spf": "mail.organization.org; spf=none smtp.mailfrom=amazon-prime.com; dkim=none header.d=amazon-prime.com; dmarc=none (p=none sp=none pct=100) action=none header.from=amazon-prime.com",
+      "spf_result": "none",
+      "spf_smtp_mailfrom": "amazon-prime.com"
+    },
+    "dkim": {
+      "dkim_signature": null,
+      "authentication_results_dkim": "mail.organization.org; spf=none smtp.mailfrom=amazon-prime.com; dkim=none header.d=amazon-prime.com; dmarc=none (p=none sp=none pct=100) action=none header.from=amazon-prime.com",
+      "dkim_result": "none",
+      "dkim_domain": null,
+      "dkim_selector": null
+    },
+    "dmarc": {
+      "authentication_results_dmarc": "mail.organization.org; spf=none smtp.mailfrom=amazon-prime.com; dkim=none header.d=amazon-prime.com; dmarc=none (p=none sp=none pct=100) action=none header.from=amazon-prime.com",
+      "dmarc_result": "none",
+      "dmarc_policy": null,
+      "dmarc_domain": "p=none"
+    },
+    "mail_hops": [
+      {
+        "from": "10.0.0.1",
+        "by": "mx1.fake-mail-server.com",
+        "with": "SMTP",
+        "id": "4E5F6A7B8C",
+        "timestamp": "Wed, 17 Jan 2024 16:44:20",
+        "ip_address": "10.0.0.1"
+      }
+    ],
+    "basic_info": {
+      "from": "Amazon Prime <no-reply@amazon-prime.com>",
+      "to": "customer@organization.org",
+      "subject": "Your Prime Membership Expires Today - Renew Now!",
+      "date": "Wed, 17 Jan 2024 16:44:20 +0000",
+      "message_id": "<20240117164420.4E5F6A7B8C@mx1.fake-mail-server.com>",
+      "return_path": "<no-reply@amazon-prime.com>"
+    },
+    "sample_file": "phish_email_3.txt"
+  },
+  {
+    "spf": {
+      "received_spf": "pass (mail.gateway.net: domain of bank-security.com designates 198.51.100.150 as permitted sender) client-ip=198.51.100.150;",
+      "authentication_results_spf": "mail.financial.com; spf=pass smtp.mailfrom=bank-security.com; dkim=fail (signature verification failed) header.d=bank-security.com header.i=@bank-security.com; dmarc=fail (p=reject sp=reject pct=100) action=reject header.from=bank-security.com",
+      "spf_result": "pass",
+      "spf_smtp_mailfrom": "bank-security.com"
+    },
+    "dkim": {
+      "dkim_signature": "v=1; a=rsa-sha256; c=relaxed/relaxed; d=bank-security.com; s=default; h=from:to:subject:date; bh=invalid123signature456here789should010fail012; b=corrupted_signature_data_here_that_will_fail_verification",
+      "authentication_results_dkim": "mail.financial.com; spf=pass smtp.mailfrom=bank-security.com; dkim=fail (signature verification failed) header.d=bank-security.com header.i=@bank-security.com; dmarc=fail (p=reject sp=reject pct=100) action=reject header.from=bank-security.com",
+      "dkim_result": "fail",
+      "dkim_domain": "bank-security.com",
+      "dkim_selector": "default"
+    },
+    "dmarc": {
+      "authentication_results_dmarc": "mail.financial.com; spf=pass smtp.mailfrom=bank-security.com; dkim=fail (signature verification failed) header.d=bank-security.com header.i=@bank-security.com; dmarc=fail (p=reject sp=reject pct=100) action=reject header.from=bank-security.com",
+      "dmarc_result": "fail",
+      "dmarc_policy": null,
+      "dmarc_domain": "p=reject"
+    },
+    "mail_hops": [
+      {
+        "from": "203.0.113.200",
+        "by": "mail.gateway.net",
+        "with": "ESMTPS",
+        "id": "6A7B8C9D0E",
+        "timestamp": "Thu, 18 Jan 2024 11:29:05",
+        "ip_address": "203.0.113.200"
+      }
+    ],
+    "basic_info": {
+      "from": "Bank Security Alert <alerts@bank-security.com>",
+      "to": "client@financial.com",
+      "subject": "Suspicious Activity Detected on Your Account",
+      "date": "Thu, 18 Jan 2024 11:29:05 +0000",
+      "message_id": "<20240118112905.6A7B8C9D0E@mail.gateway.net>",
+      "return_path": "<alerts@bank-security.com>"
+    },
+    "sample_file": "phish_email_4.txt"
+  },
+  {
+    "spf": {
+      "received_spf": "temperror (smtp.proxy-service.com: error in processing during lookup of apple-id.com: DNS timeout) client-ip=10.10.10.10;",
+      "authentication_results_spf": "mail.enterprise.com; spf=temperror smtp.mailfrom=apple-id.com; dkim=none header.d=apple-id.com; dmarc=none (p=none sp=none pct=100) action=none header.from=apple-id.com",
+      "spf_result": "temperror",
+      "spf_smtp_mailfrom": "apple-id.com"
+    },
+    "dkim": {
+      "dkim_signature": null,
+      "authentication_results_dkim": "mail.enterprise.com; spf=temperror smtp.mailfrom=apple-id.com; dkim=none header.d=apple-id.com; dmarc=none (p=none sp=none pct=100) action=none header.from=apple-id.com",
+      "dkim_result": "none",
+      "dkim_domain": null,
+      "dkim_selector": null
+    },
+    "dmarc": {
+      "authentication_results_dmarc": "mail.enterprise.com; spf=temperror smtp.mailfrom=apple-id.com; dkim=none header.d=apple-id.com; dmarc=none (p=none sp=none pct=100) action=none header.from=apple-id.com",
+      "dmarc_result": "none",
+      "dmarc_policy": null,
+      "dmarc_domain": "p=none"
+    },
+    "mail_hops": [
+      {
+        "from": "192.0.2.250",
+        "by": "smtp.proxy-service.com",
+        "with": "SMTP",
+        "id": "9D0E1F2A3B",
+        "timestamp": "Fri, 19 Jan 2024 13:18:15",
+        "ip_address": "192.0.2.250"
+      }
+    ],
+    "basic_info": {
+      "from": "Apple ID <noreply@apple-id.com>",
+      "to": "user@enterprise.com",
+      "subject": "Your Apple ID Has Been Locked - Unlock Now",
+      "date": "Fri, 19 Jan 2024 13:18:15 +0000",
+      "message_id": "<20240119131815.9D0E1F2A3B@smtp.proxy-service.com>",
+      "return_path": "<noreply@apple-id.com>"
+    },
+    "sample_file": "phish_email_5.txt"
+  }
+]
