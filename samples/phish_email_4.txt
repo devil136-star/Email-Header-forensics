@@ -1,0 +1,25 @@
+Return-Path: <alerts@bank-security.com>
+Received: from mail.gateway.net (mail.gateway.net [203.0.113.200])
+	by mail.financial.com (Cisco IronPort) with ESMTP id 5F6A7B8C9D
+	for <client@financial.com>; Thu, 18 Jan 2024 11:30:15 +0000
+Received: from [203.0.113.200] (unknown [198.51.100.150])
+	by mail.gateway.net (Postfix) with ESMTPS id 6A7B8C9D0E
+	for <client@financial.com>; Thu, 18 Jan 2024 11:29:05 +0000
+Received-SPF: pass (mail.gateway.net: domain of bank-security.com designates 198.51.100.150 as permitted sender) client-ip=198.51.100.150;
+Authentication-Results: mail.financial.com;
+	spf=pass smtp.mailfrom=bank-security.com;
+	dkim=fail (signature verification failed) header.d=bank-security.com header.i=@bank-security.com;
+	dmarc=fail (p=reject sp=reject pct=100) action=reject header.from=bank-security.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bank-security.com;
+	s=default; h=from:to:subject:date;
+	bh=invalid123signature456here789should010fail012;
+	b=corrupted_signature_data_here_that_will_fail_verification
+Message-ID: <20240118112905.6A7B8C9D0E@mail.gateway.net>
+Date: Thu, 18 Jan 2024 11:29:05 +0000
+From: Bank Security Alert <alerts@bank-security.com>
+To: client@financial.com
+Subject: Suspicious Activity Detected on Your Account
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+

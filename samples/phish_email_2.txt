@@ -1,0 +1,25 @@
+Return-Path: <support@microsoft-account.com>
+Received: from smtp.relay-server.net (smtp.relay-server.net [198.51.100.78])
+	by mail.company.com (Microsoft Exchange Server 2016) with ESMTP id 9C4D5E6F7A
+	for <employee@company.com>; Tue, 16 Jan 2024 09:15:22 +0000
+Received: from [198.51.100.78] (unknown [172.16.0.50])
+	by smtp.relay-server.net (Postfix) with ESMTPS id 2A3B4C5D6E
+	for <employee@company.com>; Tue, 16 Jan 2024 09:14:10 +0000
+Received-SPF: softfail (smtp.relay-server.net: transitioning domain of microsoft-account.com does not clearly designate 172.16.0.50 as permitted sender) client-ip=172.16.0.50;
+Authentication-Results: mail.company.com;
+	spf=softfail smtp.mailfrom=microsoft-account.com;
+	dkim=pass (signature verified) header.d=microsoft-account.com header.i=@microsoft-account.com;
+	dmarc=pass (p=none sp=none pct=100) action=none header.from=microsoft-account.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft-account.com;
+	s=selector1; h=from:to:subject:date;
+	bh=abc123def456ghi789jkl012mno345pqr678stu901vwx234yz;
+	b=xyz789abc123def456ghi789jkl012mno345pqr678stu901vwx234yz
+Message-ID: <20240116091410.2A3B4C5D6E@smtp.relay-server.net>
+Date: Tue, 16 Jan 2024 09:14:10 +0000
+From: Microsoft Account Team <support@microsoft-account.com>
+To: employee@company.com
+Subject: Action Required: Verify Your Microsoft Account
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: base64
+

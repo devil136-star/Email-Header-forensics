@@ -1,0 +1,21 @@
+Return-Path: <noreply@paypal-security.com>
+Received: from mail.paypal-security.com (mail.paypal-security.com [192.168.45.123])
+	by mail.example.com (Postfix) with ESMTP id 8A3F2B1C4D
+	for <user@example.com>; Mon, 15 Jan 2024 14:23:45 +0000
+Received: from [192.168.45.123] (unknown [203.0.113.45])
+	by mail.paypal-security.com (Postfix) with SMTP id 7B8C9D0E1F
+	for <user@example.com>; Mon, 15 Jan 2024 14:22:30 +0000
+Received-SPF: fail (mail.paypal-security.com: domain of paypal-security.com does not designate 203.0.113.45 as permitted sender) client-ip=203.0.113.45;
+Authentication-Results: mail.example.com;
+	spf=fail smtp.mailfrom=paypal-security.com;
+	dkim=none header.d=paypal-security.com;
+	dmarc=fail (p=quarantine sp=quarantine pct=100) action=quarantine header.from=paypal-security.com
+Message-ID: <20240115142230.7B8C9D0E1F@mail.paypal-security.com>
+Date: Mon, 15 Jan 2024 14:22:30 +0000
+From: PayPal Security <noreply@paypal-security.com>
+To: user@example.com
+Subject: URGENT: Your PayPal Account Has Been Suspended
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+

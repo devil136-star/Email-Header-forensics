@@ -1,0 +1,21 @@
+Return-Path: <no-reply@amazon-prime.com>
+Received: from mx1.fake-mail-server.com (mx1.fake-mail-server.com [10.0.0.1])
+	by mail.organization.org (Postfix) with ESMTP id 3D4E5F6A7B
+	for <customer@organization.org>; Wed, 17 Jan 2024 16:45:33 +0000
+Received: from [10.0.0.1] (unknown [192.0.2.100])
+	by mx1.fake-mail-server.com (Postfix) with SMTP id 4E5F6A7B8C
+	for <customer@organization.org>; Wed, 17 Jan 2024 16:44:20 +0000
+Received-SPF: none (mx1.fake-mail-server.com: no SPF record found for amazon-prime.com) client-ip=192.0.2.100;
+Authentication-Results: mail.organization.org;
+	spf=none smtp.mailfrom=amazon-prime.com;
+	dkim=none header.d=amazon-prime.com;
+	dmarc=none (p=none sp=none pct=100) action=none header.from=amazon-prime.com
+Message-ID: <20240117164420.4E5F6A7B8C@mx1.fake-mail-server.com>
+Date: Wed, 17 Jan 2024 16:44:20 +0000
+From: Amazon Prime <no-reply@amazon-prime.com>
+To: customer@organization.org
+Subject: Your Prime Membership Expires Today - Renew Now!
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
